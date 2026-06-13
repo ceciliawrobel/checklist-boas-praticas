@@ -18,6 +18,7 @@
             --border-bloco: #eef2f5;
             --bg-label: #f8f9fa;
             --border-label: #dcdde1;
+            --bg-input: #ffffff;
         }
 
         [data-theme="dark"] {
@@ -28,6 +29,7 @@
             --border-bloco: #2d2d2d;
             --bg-label: #2d2d2d;
             --border-label: #404040;
+            --bg-input: #252525;
         }
 
         body { 
@@ -76,7 +78,7 @@
         /* Layout normal da tela */
         .perguntas-container { display: block; }
         .pergunta-bloco { padding: 20px 0; border-bottom: 2px solid var(--border-bloco); transition: background-color 0.3s; }
-        .pergunta-texto { font-size: 15px; margin-bottom: 15px; font-weight: 600; color: var(--text-pergunta); line-height: 1.4; }
+        .pergunta-texto { font-size: 15px; margin-bottom: 12px; font-weight: 600; color: var(--text-pergunta); line-height: 1.4; }
         
         .pergunta-alerta {
             background-color: rgba(231, 76, 60, 0.15) !important;
@@ -85,7 +87,7 @@
             border-radius: 4px;
         }
         
-        .opcoes { display: flex; gap: 10px; flex-wrap: wrap; }
+        .opcoes { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
         
         label { 
             cursor: pointer; 
@@ -108,6 +110,26 @@
         input[value="PARCIAL"]:checked + label { background-color: #f1c40f !important; color: white !important; border-color: #f1c40f !important; }
         input[value="NAO"]:checked + label { background-color: #e74c3c !important; color: white !important; border-color: #e74c3c !important; }
         input[value="NO"]:checked + label { background-color: #95a5a6 !important; color: white !important; border-color: #95a5a6 !important; }
+        
+        /* Campo de Observação */
+        .obs-container { width: 100%; }
+        .obs-input {
+            width: 100%;
+            box-sizing: border-box;
+            background-color: var(--bg-input);
+            color: var(--text-main);
+            border: 1px solid var(--border-label);
+            border-radius: 6px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 13px;
+            resize: none;
+            transition: border-color 0.2s;
+        }
+        .obs-input:focus {
+            border-color: #1abc9c;
+            outline: none;
+        }
         
         .botoes-container { display: flex; gap: 15px; margin-top: 40px; }
         
@@ -159,7 +181,7 @@
         /* REGRAS DE IMPRESSÃO (CONFIGURAÇÃO DO PDF COMPACTO) */
         @media print {
             @page { margin: 1cm; }
-            body { background-color: white !important; color: black !important; padding: 0; font-size: 12px; }
+            body { background-color: white !important; color: black !important; padding: 0; font-size: 11px; }
             .container { box-shadow: none !important; padding: 0 !important; max-width: 100% !important; margin: 0 !important; }
             .theme-toggle, .botoes-container { display: none !important; }
             h1 { color: black !important; font-size: 18px; margin-top: 0; margin-bottom: 15px; }
@@ -174,13 +196,19 @@
             .pergunta-bloco { 
                 page-break-inside: avoid; 
                 border-bottom: 1px solid #ddd !important; 
-                padding: 6px 0 !important; 
+                padding: 8px 0 !important; 
+                display: block; /* Mudado de flex para block para acomodar a obs abaixo */
+                background-color: transparent !important;
+            }
+            
+            .linha-topo-impressao {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 gap: 10px;
-                background-color: transparent !important;
+                width: 100%;
             }
+
             .pergunta-texto { color: black !important; font-size: 11px; margin-bottom: 0 !important; flex: 1; font-weight: normal; }
             
             input[type="radio"]:not(:checked) + label { display: none !important; }
@@ -198,6 +226,22 @@
                 text-align: center;
                 min-width: 50px;
             }
+
+            /* Estilização da Observação Impressa no PDF */
+            .obs-container { margin-top: 4px; }
+            .obs-input {
+                border: none !important;
+                padding: 0 !important;
+                font-size: 10px !important;
+                font-style: italic;
+                color: #555 !important;
+                background: transparent !important;
+            }
+            /* Esconde a caixa de texto se ela estiver totalmente vazia no PDF */
+            .obs-input:placeholder-shown {
+                display: none !important;
+            }
+            
             #resultado { 
                 display: block !important; 
                 background-color: #f9f9f9 !important; 
@@ -249,7 +293,7 @@
                     "14. O teto está limpo e sem acúmulo de sujeira?",
                     "15. O ambiente é higienizado com frequência adequada?",
                     "16. Não há acúmulo de lixo na área de produção?",
-                    "17. O lixo é armazenado corretamente in recipientes fechados?",
+                    "17. O lixo é armazenado corretamente em recipientes fechados?",
                     "18. O ambiente está livre de pragas e insetos?",
                     "19. Há controle regular de pragas no local?",
                     "20. Não há presença de animais na área de manipulação?",
@@ -269,7 +313,7 @@
                     "34. Os refrigeradores estão organizados?",
                     "35. Não há alimentos em contato direto com o chão?",
                     "36. As prateleiras estão limpas e organizadas?",
-                    "37. Os alimentos são armazenados em recipientes adequados?",
+                    "37. Os alimentos são armazenados in recipientes adequados?",
                     "38. Há controle de entrada e saída de produtos?",
                     "39. Não há produtos com sinais de deterioração?",
                     "40. Os alimentos são protegidos de contaminação cruzada?",
@@ -314,12 +358,17 @@
                     const idQuestao = "q_" + index;
                     document.write(`
                         <div class="pergunta-bloco" id="bloco_${idQuestao}">
-                            <div class="pergunta-texto">${texto}</div>
-                            <div class="opcoes">
-                                <input type="radio" id="${idQuestao}_s" name="${idQuestao}" value="SIM"><label for="${idQuestao}_s">SIM</label>
-                                <input type="radio" id="${idQuestao}_p" name="${idQuestao}" value="PARCIAL"><label for="${idQuestao}_p">PARCIAL</label>
-                                <input type="radio" id="${idQuestao}_n" name="${idQuestao}" value="NAO"><label for="${idQuestao}_n">NÃO</label>
-                                <input type="radio" id="${idQuestao}_no" name="${idQuestao}" value="NO"><label for="${idQuestao}_no">N.O.</label>
+                            <div class="linha-topo-impressao">
+                                <div class="pergunta-texto">${texto}</div>
+                                <div class="opcoes">
+                                    <input type="radio" id="${idQuestao}_s" name="${idQuestao}" value="SIM"><label for="${idQuestao}_s">SIM</label>
+                                    <input type="radio" id="${idQuestao}_p" name="${idQuestao}" value="PARCIAL"><label for="${idQuestao}_p">PARCIAL</label>
+                                    <input type="radio" id="${idQuestao}_n" name="${idQuestao}" value="NAO"><label for="${idQuestao}_n">NÃO</label>
+                                    <input type="radio" id="${idQuestao}_no" name="${idQuestao}" value="NO"><label for="${idQuestao}_no">N.O.</label>
+                                </div>
+                            </div>
+                            <div class="obs-container">
+                                <textarea class="obs-input" rows="1" placeholder="Adicionar observação..." oninput="ajustarAltura(this)"></textarea>
                             </div>
                         </div>
                     `);
@@ -354,6 +403,12 @@
             localStorage.setItem('tema', 'dark');
             document.getElementById('btnTema').innerText = "Modo Claro ☀️";
         }
+    }
+
+    // Faz a caixa de observação crescer caso o texto ocupe mais linhas
+    function ajustarAltura(element) {
+        element.style.height = "auto";
+        element.style.height = element.scrollHeight + "px";
     }
 
     function verificarRespostasFaltantes() {
