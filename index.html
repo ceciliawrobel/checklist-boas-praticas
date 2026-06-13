@@ -53,6 +53,20 @@
             margin-top: 20px;
         }
 
+        /* Área do Cabeçalho com Logo */
+        .header-app {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-top: 10px;
+        }
+
+        .logo-prefeitura {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
         .theme-toggle {
             position: absolute;
             top: 15px;
@@ -66,13 +80,14 @@
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            z-index: 10;
         }
         [data-theme="dark"] .theme-toggle {
             background-color: #f1c40f;
             color: #121212;
         }
 
-        h1 { color: #2c3e50; text-align: center; margin-bottom: 25px; font-size: 24px; padding-right: 40px; }
+        h1 { color: #2c3e50; text-align: center; margin: 0; font-size: 24px; }
         [data-theme="dark"] h1 { color: #1abc9c; }
         
         /* Layout normal da tela */
@@ -184,7 +199,10 @@
             body { background-color: white !important; color: black !important; padding: 0; font-size: 11px; }
             .container { box-shadow: none !important; padding: 0 !important; max-width: 100% !important; margin: 0 !important; }
             .theme-toggle, .botoes-container { display: none !important; }
-            h1 { color: black !important; font-size: 18px; margin-top: 0; margin-bottom: 15px; }
+            
+            .header-app { margin-bottom: 20px; }
+            .logo-prefeitura { max-width: 120px; margin-bottom: 10px; }
+            h1 { color: black !important; font-size: 18px; }
             
             .perguntas-container { 
                 display: grid; 
@@ -197,7 +215,7 @@
                 page-break-inside: avoid; 
                 border-bottom: 1px solid #ddd !important; 
                 padding: 8px 0 !important; 
-                display: block; /* Mudado de flex para block para acomodar a obs abaixo */
+                display: block; 
                 background-color: transparent !important;
             }
             
@@ -227,7 +245,6 @@
                 min-width: 50px;
             }
 
-            /* Estilização da Observação Impressa no PDF */
             .obs-container { margin-top: 4px; }
             .obs-input {
                 border: none !important;
@@ -237,7 +254,6 @@
                 color: #555 !important;
                 background: transparent !important;
             }
-            /* Esconde a caixa de texto se ela estiver totalmente vazia no PDF */
             .obs-input:placeholder-shown {
                 display: none !important;
             }
@@ -270,7 +286,10 @@
 <div class="container">
     <button type="button" class="theme-toggle" onclick="alternarTema()" id="btnTema">Modo Dark 🌙</button>
 
-    <h1>Checklist de Boas Práticas</h1>
+    <div class="header-app">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxf296af42CYQAp36IZ0CkfzK2eQztAilqGA&s" alt="Logo Prefeitura de Castro" class="logo-prefeitura">
+        <h1>Checklist de Boas Práticas</h1>
+    </div>
 
     <form id="checklistForm">
         
@@ -289,7 +308,7 @@
                     "10. Os manipuladores evitam comportamentos inadequados na área de produção?",
                     "11. As superfícies de trabalho estão limpas e higienizadas?",
                     "12. O piso da área de produção está limpo e conservado?",
-                    "13. As paredes estão limpas e sem danos aparentes?",
+                    "13. As paredes estão limhas e sem danos aparentes?",
                     "14. O teto está limpo e sem acúmulo de sujeira?",
                     "15. O ambiente é higienizado com frequência adequada?",
                     "16. Não há acúmulo de lixo na área de produção?",
@@ -313,7 +332,7 @@
                     "34. Os refrigeradores estão organizados?",
                     "35. Não há alimentos em contato direto com o chão?",
                     "36. As prateleiras estão limpas e organizadas?",
-                    "37. Os alimentos são armazenados in recipientes adequados?",
+                    "37. Os alimentos são armazenados em recipientes adequados?",
                     "38. Há controle de entrada e saída de produtos?",
                     "39. Não há produtos com sinais de deterioração?",
                     "40. Os alimentos são protegidos de contaminação cruzada?",
