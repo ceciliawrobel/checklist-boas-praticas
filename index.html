@@ -55,7 +55,7 @@
             margin-top: 20px;
         }
 
-        /* Área do Cabeçalho Segura e Alinhada */
+        /* Área do Cabeçalho Totalmente Segura */
         .header-app {
             display: flex;
             align-items: center;
@@ -64,6 +64,7 @@
             padding-bottom: 20px;
             margin-bottom: 25px;
             gap: 20px;
+            width: 100%;
         }
 
         .logo-container {
@@ -71,20 +72,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            width: 110px;
         }
 
         .logo-prefeitura {
-            max-width: 110px;
+            width: 100%;
             height: auto;
             display: block;
-            /* Efeito para mesclar o fundo branco da logo com o fundo do app */
             mix-blend-mode: multiply;
         }
 
         .texto-header-container {
             flex: 1;
             text-align: center;
-            padding-right: 20px;
         }
 
         .texto-institucional {
@@ -248,7 +248,7 @@
                 margin-bottom: 20px; 
                 border-bottom: 2px solid #333 !important;
             }
-            .logo-prefeitura { max-width: 85px; mix-blend-mode: multiply !important; }
+            .logo-container { width: 85px; }
             .texto-header-container { padding-right: 0; }
             .texto-institucional { color: black !important; font-size: 16px; }
             .subtexto-institucional { color: black !important; font-size: 13px; }
@@ -338,7 +338,7 @@
 
     <div class="header-app">
         <div class="logo-container">
-            <img src="https://github.com/ceciliawrobel/imagem/blob/main/download.png?raw=true" alt="Logo Oficial Castro" class="logo-prefeitura">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAMAAABwKC9VAAAAMFBMVEVHcEwBAQEAAAECAgIDAwMEBAQFBQUGBgYHBwcICAkJCgoKCwsMDAwNDQ0ODg4PDw89pC0+AAAAEHRSTlMAESIzRFVmd4iZqru8zM3d7vcY9fQAAAGXSURUeNrt29tuwyAMBUALbUjd//9tFyep1E6bphK6T70gwsY+gAnb6fSfbE/Ea0R7Ij0Rh8R+IvdEbBKfEc8RrxGfEbcRrxEvEXsSdyX2fI8YEtN/RIyJ6S9ibmL6EisT09fEmph+IjZETG/iXhM3iT0x3SQuEzOJpURV4lIipUQtIlmJQ6KSiIidRCkiDolaiEsiHxEvieN7RPu7Yf8Y8bsh3f+Z6P5O7u8S00w/EfM7eW8S977E90zMe0bZf8aon1H6M/oR6r+3f0tMv8Skny9qZ5b93y368fO+XG606SbyE7mJuG6W77fFpJsidpM8b5ZtsU9RtkU/f97ny6U/b/9ymX669PPn6XKJ/fHpp325/D0+bZebfvrp06WfP0+XS3/efv7G9Evsz9vP35h+ifl523/bLzHpx9v+uF1+b79fXm765WW7XP758pYvb/nyW7685ctbvrzly1u+vOXLW7685ctbvrwffnk/fHk///J++PJ+N8v73S3vR8G7W8G7W8G7W8G7W8G7W8G7W8G7X8C7X8C7X8C7X8C7v4Z3v4Z3/8b0H369Tqc/X5rUfQAAAABJRU5ErkJggg==" alt="Logo Oficial Castro" class="logo-prefeitura">
         </div>
         <div class="texto-header-container">
             <div class="texto-institucional">Prefeitura Municipal de Castro</div>
