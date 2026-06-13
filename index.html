@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Checklist Tablet - 75 Perguntas de Boas Práticas</title>
+    <title>Checklist Tablet - Prefeitura de Castro</title>
     
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#2c3e50">
@@ -55,58 +55,63 @@
             margin-top: 20px;
         }
 
-        /* Área do Cabeçalho com Alinhamento Lado a Lado */
+        /* Área do Cabeçalho Alinhada */
         .header-app {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: flex-start;
             border-bottom: 2px solid var(--border-bloco);
             padding-bottom: 20px;
             margin-bottom: 25px;
-            gap: 15px;
+            gap: 20px;
         }
 
         .logo-container {
             flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .logo-prefeitura {
-            max-width: 120px;
+            max-width: 110px;
             height: auto;
             display: block;
-            /* Remove a parte branca da imagem tornando-a transparente */
-            mix-blend-mode: multiply; 
+            /* Remove o fundo branco da imagem tornando-a transparente */
+            mix-blend-mode: multiply;
         }
 
         .texto-header-container {
             flex: 1;
             text-align: center;
-            padding-right: 40px; /* Compensa o botão dark para centralizar melhor */
+            padding-right: 20px;
         }
 
         .texto-institucional {
-            font-size: 16px;
+            font-size: 20px;
             font-weight: bold;
             color: var(--text-header);
-            margin: 0 0 5px 0;
+            margin: 0 0 6px 0;
             line-height: 1.3;
+            text-transform: uppercase;
         }
 
         .subtexto-institucional {
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 600;
             color: var(--text-main);
-            margin: 0 0 3px 0;
+            margin: 0 0 4px 0;
         }
 
-        h1 { 
-            color: #34495e; 
-            margin: 8px 0 0 0; 
-            font-size: 20px; 
+        .setor-institucional {
+            font-size: 15px;
+            font-weight: bold;
+            color: #1abc9c;
+            margin: 0;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        [data-theme="dark"] h1 { color: #ffffff; }
+        [data-theme="dark"] .setor-institucional { color: #1abc9c; }
 
         .theme-toggle {
             position: absolute;
@@ -243,11 +248,11 @@
                 margin-bottom: 20px; 
                 border-bottom: 2px solid #333 !important;
             }
-            .logo-prefeitura { max-width: 90px; mix-blend-mode: multiply !important; }
+            .logo-prefeitura { max-width: 85px; mix-blend-mode: multiply !important; }
             .texto-header-container { padding-right: 0; }
-            .texto-institucional { color: black !important; font-size: 15px; }
+            .texto-institucional { color: black !important; font-size: 16px; }
             .subtexto-institucional { color: black !important; font-size: 13px; }
-            h1 { color: black !important; font-size: 16px; }
+            .setor-institucional { color: black !important; font-size: 13px; }
             
             .perguntas-container { 
                 display: grid; 
@@ -333,13 +338,12 @@
 
     <div class="header-app">
         <div class="logo-container">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxf296af42CYQAp36IZ0CkfzK2eQztAilqGA&s" alt="Logo Prefeitura de Castro" class="logo-prefeitura">
+            <img src="https://raw.githubusercontent.com/ceciliawrobel/imagem/refs/heads/main/images.jfif" alt="Logo Oficial Castro" class="logo-prefeitura">
         </div>
         <div class="texto-header-container">
             <div class="texto-institucional">Prefeitura Municipal de Castro</div>
             <div class="subtexto-institucional">Secretaria Municipal de Educação</div>
-            <div class="subtexto-institucional" style="font-weight: bold; color: #1abc9c;">Alimentação Escolar</div>
-            <h1>Checklist de Boas Práticas</h1>
+            <div class="setor-institucional">Alimentação Escolar</div>
         </div>
     </div>
 
@@ -364,7 +368,7 @@
                     "14. O teto está limpo e sem acúmulo de sujeira?",
                     "15. O ambiente é higienizado com frequência adequada?",
                     "16. Não há acúmulo de lixo na área de produção?",
-                    "17. O lixo é armazenado corretamente em recipientes fechados?",
+                    "17. O lixo é armazenado corretamente in recipientes fechados?",
                     "18. O ambiente está livre de pragas e insetos?",
                     "19. Há controle regular de pragas no local?",
                     "20. Não há presença de animais na área de manipulação?",
@@ -476,7 +480,6 @@
         }
     }
 
-    // Faz a caixa de observação crescer caso o texto ocupe mais linhas
     function ajustarAltura(element) {
         element.style.height = "auto";
         element.style.height = element.scrollHeight + "px";
